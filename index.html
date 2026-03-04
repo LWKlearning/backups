@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backup Links</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace; /* Changed to monospace for extra CRT feel */
+            background-color: #000;
+            color: #33ff33;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 1s ease;
+            overflow-x: hidden;
+        }
+
+        /* CRT Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0,255,0,0.05) 0px,
+                rgba(0,255,0,0.05) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center,
+                transparent 60%,
+                rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
+            z-index: 11;
+        }
+
+        /* Flicker */
+        @keyframes flicker {
+            0% { opacity: 0.98; }
+            50% { opacity: 1; }
+            100% { opacity: 0.97; }
+        }
+
+        body {
+            animation: flicker 0.15s infinite;
+        }
+
+        /* Title */
+        h1 {
+            margin: 40px 0;
+            font-size: 3.5em;
+            text-shadow: 0 0 15px #33ff33;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        /* Grid */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            width: 90%;
+            max-width: 1200px;
+            padding-bottom: 50px;
+        }
+
+        /* Cards */
+        .game-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid #33ff33;
+            border-radius: 10px;
+            text-decoration: none;
+            aspect-ratio: 16 / 9; /* Adjusted for link display */
+            transform: scale(0.95);
+            opacity: 0;
+            transition: 
+                transform 0.4s ease,
+                opacity 0.8s ease,
+                box-shadow 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 50, 0, 0.2);
+        }
+
+        .game-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .game-title {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #33ff33;
+            text-shadow: 0 0 8px #33ff33;
+            word-break: break-all;
+        }
+
+        /* Hover glow */
+        .game-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #33ff33;
+            background: rgba(0, 255, 0, 0.1);
+        }
+
+        /* Page fade-out */
+        .fade-out {
+            opacity: 0 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>BACKUP LINKS</h1>
+
+    <div class="game-grid">
+        <a href="https://classroom12.web.app/" class="game-card">
+            <div class="game-title">classroom12.web.app</div>
+        </a>
+        <a href="https://classroom12.firebaseapp.com/" class="game-card">
+            <div class="game-title">classroom12.firebaseapp</div>
+        </a>
+        <a href="https://lwkregurgitation.web.app/" class="game-card">
+            <div class="game-title">lwkregurgitation.web.app</div>
+        </a>
+        <a href="https://lwkregurgitation.firebaseapp.com/" class="game-card">
+            <div class="game-title">lwkregurgitation.firebaseapp</div>
+        </a>
+        <a href="https://m41236.web.app/" class="game-card">
+            <div class="game-title">m41236.web.app</div>
+        </a>
+        <a href="https://m41236.firebaseapp.com/" class="game-card">
+            <div class="game-title">m41236.firebaseapp</div>
+        </a>
+        <a href="https://sharp0.web.app/" class="game-card">
+            <div class="game-title">sharp0.web.app</div>
+        </a>
+        <a href="https://sharp0.firebaseapp.com/" class="game-card">
+            <div class="game-title">sharp0.firebaseapp</div>
+        </a>
+        <a href="https://thewindmill.web.app/" class="game-card">
+            <div class="game-title">thewindmill.web.app</div>
+        </a>
+        <a href="https://thewindmill.firebaseapp.com/" class="game-card">
+            <div class="game-title">thewindmill.firebaseapp</div>
+        </a>
+        <a href="https://whyhello.web.app/" class="game-card">
+            <div class="game-title">whyhello.web.app</div>
+        </a>
+        <a href="https://whyhello.firebaseapp.com/" class="game-card">
+            <div class="game-title">whyhello.firebaseapp</div>
+        </a>
+    </div>
+<p>i advise you bookmark these into a folder incase lwklearning goes down.</p>
+    <script>
+        window.addEventListener('load', () => {
+            // Fade in body
+            document.body.style.opacity = '1';
+            
+            // Fade in cards sequentially
+            const cards = document.querySelectorAll('.game-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, 100 * index);
+            });
+        });
+
+        // Add fade out effect on click
+        document.querySelectorAll('.game-card').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.href;
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = target;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
